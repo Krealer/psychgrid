@@ -1,0 +1,145 @@
+/* ===============================
+   PsychGrid – main.css
+   =============================== */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* -------------------------------
+   Grid Layout
+-------------------------------- */
+#grid-container {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  width: 80vmin;
+  height: 80vmin;
+  max-width: 800px;
+  max-height: 800px;
+  border: 2px solid #444;
+  background-color: #111;
+  position: relative;
+}
+
+.grid-tile {
+  border: 1px solid #333;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* -------------------------------
+   Circles: Player & NPCs
+-------------------------------- */
+.circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0; left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: black;
+  font-weight: bold;
+}
+
+.circle.player { background-color: #ffffff; }
+.circle.selena { background-color: #8b5cf6; } /* purple */
+.circle.mira   { background-color: #facc15; } /* yellow */
+.circle.viera  { background-color: #be185d; } /* dark pink */
+.circle.kael   { background-color: #1e3a8a; } /* dark blue */
+
+/* -------------------------------
+   UI Panels
+-------------------------------- */
+.ui {
+  background-color: #222;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 6px;
+  max-width: 600px;
+  width: 90%;
+}
+
+#dialogue-box,
+#crafting-ui,
+#chest-ui {
+  position: relative;
+  z-index: 10;
+}
+
+#inventory {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #111;
+  width: 100%;
+  border-top: 2px solid #444;
+}
+
+#inventory h3 {
+  margin: 5px 10px;
+  font-size: 1rem;
+}
+
+#inventory-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#inventory-list li {
+  background-color: #333;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+/* -------------------------------
+   Dialogue & Crafting Options
+-------------------------------- */
+#dialogue-options button,
+#crafting-options button,
+#chest-ui button {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  margin-top: 5px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#dialogue-options button:hover,
+#crafting-options button:hover,
+#chest-ui button:hover {
+  background-color: #666;
+}
+
+/* -------------------------------
+   Utility Classes
+-------------------------------- */
+.hidden {
+  display: none;
+}
+
+.grid-tile:hover {
+  background-color: #444 !important;
+  cursor: pointer;
+}

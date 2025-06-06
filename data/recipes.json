@@ -1,0 +1,12 @@
+[
+  {
+    "id": "make_key",
+    "output": "iron_key",
+    "ingredients": ["iron_ingot", "wood_handle"]
+  },
+  {
+    "id": "fail_blob",
+    "output": "useless_blob",
+    "ingredients": ["leaf", "mud"]
+  }
+]

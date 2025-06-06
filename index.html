@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PsychGrid</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./style/main.css" />
+</head>
+
+<body>
+  <div id="game-container">
+
+    <!-- 20x20 Game Grid -->
+    <div id="grid-container"></div>
+
+    <!-- Dialogue Box -->
+    <div id="dialogue-box" class="ui hidden">
+      <div id="dialogue-text"></div>
+      <div id="dialogue-options"></div>
+    </div>
+
+    <!-- Crafting UI -->
+    <div id="crafting-ui" class="ui hidden">
+      <h2>Crafting</h2>
+      <div id="crafting-options"></div>
+    </div>
+
+    <!-- Chest UI -->
+    <div id="chest-ui" class="ui hidden">
+      <h2>Chest</h2>
+      <!-- Populated dynamically -->
+    </div>
+
+    <!-- Player Inventory (bottom bar) -->
+    <div id="inventory" class="ui">
+      <h3>Inventory</h3>
+      <ul id="inventory-list"></ul>
+    </div>
+
+  </div>
+
+  <!-- Main Game Script -->
+  <script type="module" src="./scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "iron_ingot",
+    "name": "Iron Ingot",
+    "description": "A smelted chunk of iron. Strong and durable.",
+    "tags": ["metal", "craftable"]
+  },
+  {
+    "id": "wood_handle",
+    "name": "Wood Handle",
+    "description": "A shaped piece of wood, ready to be attached to something.",
+    "tags": ["wood", "craftable"]
+  },
+  {
+    "id": "iron_key",
+    "name": "Iron Key",
+    "description": "This looks like it could open something important.",
+    "tags": ["key", "final"]
+  },
+  {
+    "id": "leaf",
+    "name": "Leaf",
+    "description": "Just a leaf. Not especially useful.",
+    "tags": ["junk"]
+  },
+  {
+    "id": "mud",
+    "name": "Mud",
+    "description": "A handful of sticky brown goo.",
+    "tags": ["junk"]
+  },
+  {
+    "id": "useless_blob",
+    "name": "Useless Blob",
+    "description": "The result of mixing things that should not be mixed.",
+    "tags": ["junk", "craft_result"]
+  }
+]

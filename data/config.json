@@ -1,0 +1,19 @@
+{
+  "gridSize": 20,
+  "stepDelayMs": 200,
+  "maxPlayerInventory": 3,
+  "maxChestStorage": 100,
+  "allowDuplicateItems": false,
+
+  "dialogue": {
+    "textSpeed": 0,        
+    "maxOptions": 4       
+  },
+
+  "systems": {
+    "enableCrafting": true,
+    "enableManipulation": true,
+    "enableSound": false,
+    "debugMode": false
+  }
+}
