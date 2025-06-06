@@ -3,9 +3,9 @@
 // ===============================
 
 import { playerState } from './state.js';
-import { chestState } from './chest_state.js'; // ✅ Correct file
+import { chestState } from './chest_state.js';
 import { renderChestUI } from './chest.js';
-import { getItemById } from './item_loader.js'; // ✅ Added missing import
+import { getItemById } from './item_loader.js';
 
 /**
  * Initializes inventory UI on game load
@@ -20,12 +20,10 @@ export function initInventory() {
  * @returns {boolean} success
  */
 export function addItemToInventory(itemId) {
-  const inv = playerState.inventory;
+  if (hasItem(itemId)) return false;
+  if (playerState.inventory.length >= 3) return false;
 
-  if (inv.includes(itemId)) return false;
-  if (inv.length >= 3) return false;
-
-  inv.push(itemId);
+  playerState.inventory.push(itemId);
   renderInventory();
   return true;
 }
@@ -66,6 +64,7 @@ export function removeItemsFromInventory(itemIds) {
 /**
  * Checks if player has an item
  * @param {string} itemId
+ * @returns {boolean}
  */
 export function hasItem(itemId) {
   return playerState.inventory.includes(itemId);
@@ -83,9 +82,8 @@ export function renderInventory() {
     const li = document.createElement('li');
     li.classList.add('triangle-item');
     li.title = item?.description || '';
-    li.textContent = ''; // No inner text by default
+    li.textContent = ''; // No inner text
 
-    // Add name label under triangle
     const label = document.createElement('span');
     label.textContent = item ? item.name : itemId;
     label.style.position = 'absolute';

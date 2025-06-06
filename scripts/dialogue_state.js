@@ -6,12 +6,21 @@ import { playerState } from './state.js';
 import {
   addItemToInventory,
   removeItemsFromInventory,
+  hasItem,
   renderInventory
 } from './inventory.js';
 
 let currentDialogue = null;
 let currentStep = null;
 let currentCharacter = null;
+
+/**
+ * Checks if player has already received a unique reward
+ * @param {string} itemId
+ */
+function hasReward(itemId) {
+  return playerState.rewardsGiven.includes(itemId);
+}
 
 /**
  * Starts dialogue with an NPC
@@ -43,33 +52,51 @@ function renderDialogueStep() {
   textBox.textContent = step.text;
   optionsBox.innerHTML = '';
 
-  step.options.forEach((option) => {
+  const validOptions = step.options.filter(option => {
+    // Hide if this reward was already given
+    if (option.give && hasReward(option.give)) return false;
+
+    // Hide if condition is false
+    if (typeof option.condition === 'function' && !option.condition(playerState)) return false;
+
+    return true;
+  });
+
+  validOptions.forEach(option => {
     const btn = document.createElement('button');
     btn.textContent = option.label || option.text || '...';
     btn.onclick = () => handleOption(option);
     optionsBox.appendChild(btn);
   });
 
+  if (validOptions.length === 0) {
+    const btn = document.createElement('button');
+    btn.textContent = 'End';
+    btn.onclick = endDialogue;
+    optionsBox.appendChild(btn);
+  }
 }
 
 /**
  * Handles the logic when a player chooses a dialogue option
  */
 function handleOption(option) {
-  // Give item to player
-  if (option.give) {
+  // Give item only if not already rewarded
+  if (option.give && !hasReward(option.give)) {
     const success = addItemToInventory(option.give);
-    if (!success) {
+    if (success) {
+      playerState.rewardsGiven.push(option.give);
+    } else {
       alert('Could not receive item.');
     }
   }
 
-  // Take item from player
+  // Remove item
   if (option.take) {
     removeItemsFromInventory([option.take]);
   }
 
-  // Trust and fear modifiers
+  // Trust/fear modifiers
   const char = currentCharacter.name;
   if (option.trust !== undefined) {
     playerState.flags.trust[char] = (playerState.flags.trust[char] || 0) + option.trust;
@@ -78,7 +105,7 @@ function handleOption(option) {
     playerState.flags.fear[char] = (playerState.flags.fear[char] || 0) + option.fear;
   }
 
-  // Next step or end
+  // Move to next
   if (typeof option.goto === 'number') {
     currentStep = option.goto;
     renderDialogueStep();
@@ -101,7 +128,7 @@ function endDialogue() {
   if (box) box.classList.add('hidden');
   if (overlay) overlay.classList.add('hidden');
 
-  renderInventory(); // Reflect changes
+  renderInventory();
 }
 
 /**

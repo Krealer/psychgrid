@@ -1,5 +1,5 @@
 // ===============================
-// PsychGrid – viera_dialogue.js
+// PsychGrid – viera_dialogue.js (v0.4.0)
 // ===============================
 
 export const vieraDialogue = [
@@ -10,6 +10,7 @@ export const vieraDialogue = [
       { label: "I’ll figure it out without you.", goto: 2 }
     ]
   },
+
   {
     text: "Of course I do. I don’t waste effort on failure.",
     options: [
@@ -17,12 +18,14 @@ export const vieraDialogue = [
       { label: "Then teach me something.", goto: 4 }
     ]
   },
+
   {
     text: "Then go. But don’t cry when you get stuck.",
     options: [
       { label: "I won’t. Bye.", goto: null }
     ]
   },
+
   {
     text: "Curious. That’s not the answer I expected.",
     options: [
@@ -30,17 +33,29 @@ export const vieraDialogue = [
       { label: "Maybe you overestimate yourself.", goto: 6 }
     ]
   },
+
   {
-    text: "Fine. Here’s a piece of the puzzle — don’t mess it up.",
+    text: "Fine. Here’s something you might actually use.",
     options: [
-      { label: "Thanks, Viera.", goto: null, effect: { give: "wood_handle" } }
+      {
+        label: "Thanks, Viera.",
+        goto: null,
+        give: "leather_strip",
+        condition: (state) => !state.inventory.includes("leather_strip")
+      }
     ]
   },
+
   {
     text: "I *never* overestimate. But now you’ve annoyed me.",
     options: [
       { label: "That wasn’t my intention.", goto: null },
-      { label: "Prove it. Take something.", goto: null, effect: { take: "iron_ingot" } }
+      {
+        label: "Prove it. Take something.",
+        goto: null,
+        take: "iron_ingot",
+        condition: (state) => state.inventory.includes("iron_ingot")
+      }
     ]
   }
 ];

@@ -6,8 +6,9 @@
  * Player state
  */
 export const playerState = {
-  position: { x: 10, y: 10 }, // Spawn point
-  inventory: [],              // Max 3 items
+  position: { x: 10, y: 10 },
+  inventory: [],
+  rewardsGiven: [], // ✅ Add this line
   flags: {
     hasBeenTricked: 0,
     trust: {
@@ -21,8 +22,9 @@ export const playerState = {
       Kael: 0
     }
   },
-  log: []                     // Event history
+  log: []
 };
+
 
 /**
  * Shared chest state (100 item cap)
@@ -47,10 +49,9 @@ export const roomObjects = {
 export function initializeState(gridSize = 20) {
   playerState.position = { x: 10, y: 10 };
   playerState.inventory = [];
+  playerState.rewardsGiven = []; // ✅ Reset on new game
   playerState.flags.hasBeenTricked = 0;
   playerState.log = [];
 
   chestState.items = [];
-
-  // Optional: dynamic object generation later
 }
