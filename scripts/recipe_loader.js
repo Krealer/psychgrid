@@ -2,23 +2,25 @@
 // PsychGrid – recipe_loader.js
 // ===============================
 
-let cachedRecipes = null;
+let allRecipes = [];
 
 /**
- * Loads and caches crafting recipes from data/recipes.json
- * @returns {Promise<Array>} list of recipe objects
+ * Loads recipes from the JSON file and stores them in memory
  */
 export async function loadRecipes() {
-  if (cachedRecipes) return cachedRecipes;
-
   try {
     const res = await fetch('./data/recipes.json');
-    if (!res.ok) throw new Error(`Failed to load recipes.json: ${res.status}`);
-    cachedRecipes = await res.json();
-    return cachedRecipes;
-  } catch (err) {
-    console.error('Recipe loading error:', err);
-    cachedRecipes = [];
-    return cachedRecipes;
+    if (!res.ok) throw new Error('Failed to load recipes');
+    allRecipes = await res.json();
+  } catch (error) {
+    console.error('Error loading recipes:', error);
   }
+}
+
+/**
+ * Returns the currently loaded recipes
+ * Used by crafting.js and other systems
+ */
+export function getRecipes() {
+  return allRecipes;
 }

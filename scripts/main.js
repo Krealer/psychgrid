@@ -9,6 +9,7 @@ import { initInventory } from './inventory.js';
 import { initChest } from './chest.js';
 import { loadConfig } from './config_loader.js';
 import { loadRecipes } from './recipe_loader.js';
+import { loadItems } from './item_loader.js'; // ✅ Load item data
 import { registerInteractions } from './interaction.js';
 import { handleTileClick } from './movement.js';
 
@@ -18,24 +19,25 @@ import { handleTileClick } from './movement.js';
 async function initGame() {
   console.log('Initializing PsychGrid...');
 
-  // Load config and recipes before using
+  // Load data
   await loadConfig();
+  await loadItems();      // ✅ Ensure item data is available
   await loadRecipes();
 
-  // Build 20x20 grid
+  // Build grid
   createGrid(20, 20);
   bindGridTileClicks();
 
-  // Setup player and characters
+  // Characters
   setupPlayer();
   renderPlayer();
   characters.forEach(c => c.spawn());
 
-  // Init inventory and chest system
+  // Inventory & chest
   await initInventory();
   await initChest();
 
-  // Input handler (keyboard)
+  // Input handlers
   registerInteractions();
 }
 

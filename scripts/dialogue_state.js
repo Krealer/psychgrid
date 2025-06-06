@@ -3,7 +3,11 @@
 // ===============================
 
 import { playerState } from './state.js';
-import { addItemToInventory, removeItemsFromInventory, renderInventory } from './inventory.js';
+import {
+  addItemToInventory,
+  removeItemsFromInventory,
+  renderInventory
+} from './inventory.js';
 
 let currentDialogue = null;
 let currentStep = null;
@@ -39,7 +43,7 @@ function renderDialogueStep() {
   textBox.textContent = step.text;
   optionsBox.innerHTML = '';
 
-  step.options.forEach((option, index) => {
+  step.options.forEach((option) => {
     const btn = document.createElement('button');
     btn.textContent = option.text;
     btn.onclick = () => handleOption(option);
@@ -51,7 +55,7 @@ function renderDialogueStep() {
  * Handles the logic when a player chooses a dialogue option
  */
 function handleOption(option) {
-  // Handle item giving
+  // Give item to player
   if (option.give) {
     const success = addItemToInventory(option.give);
     if (!success) {
@@ -59,23 +63,21 @@ function handleOption(option) {
     }
   }
 
-  // Handle item taking
+  // Take item from player
   if (option.take) {
     removeItemsFromInventory([option.take]);
   }
 
-  // Track relationship flags
+  // Trust and fear modifiers
+  const char = currentCharacter.name;
   if (option.trust !== undefined) {
-    const char = currentCharacter.name;
     playerState.flags.trust[char] = (playerState.flags.trust[char] || 0) + option.trust;
   }
-
   if (option.fear !== undefined) {
-    const char = currentCharacter.name;
     playerState.flags.fear[char] = (playerState.flags.fear[char] || 0) + option.fear;
   }
 
-  // Advance to next step
+  // Next step or end
   if (typeof option.next === 'number') {
     currentStep = option.next;
     renderDialogueStep();
@@ -93,19 +95,21 @@ function endDialogue() {
   currentCharacter = null;
 
   const box = document.getElementById('dialogue-box');
-  if (box) {
-    box.classList.add('hidden');
-  }
+  const overlay = document.getElementById('state-overlay');
 
-  renderInventory(); // refresh after inventory changes
+  if (box) box.classList.add('hidden');
+  if (overlay) overlay.classList.add('hidden');
+
+  renderInventory(); // Reflect changes
 }
 
 /**
- * Shows dialogue UI
+ * Shows dialogue UI and overlay
  */
 function showDialogueBox() {
   const box = document.getElementById('dialogue-box');
-  if (box) {
-    box.classList.remove('hidden');
-  }
+  const overlay = document.getElementById('state-overlay');
+
+  if (box) box.classList.remove('hidden');
+  if (overlay) overlay.classList.remove('hidden');
 }

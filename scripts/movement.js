@@ -6,12 +6,14 @@ import { playerState } from './state.js';
 import { renderPlayer } from '../characters/player.js';
 import { characters } from '../characters/character_registry.js';
 import { tryInteractAt } from './interaction.js';
+import { isUIBlocking } from './utils.js';
 
 const STEP_DELAY = 200;
 
 let clickTimeout = null;
 
 export function handleTileClick(x, y) {
+  if (isUIBlocking()) return;
   if (clickTimeout) {
     clearTimeout(clickTimeout);
     clickTimeout = null;

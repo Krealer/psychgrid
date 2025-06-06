@@ -11,6 +11,7 @@ import { miraDialogue } from '../dialogue/mira_dialogue.js';
 import { selenaDialogue } from '../dialogue/selena_dialogue.js';
 import { vieraDialogue } from '../dialogue/viera_dialogue.js';
 import { kaelDialogue } from '../dialogue/kael_dialogue.js';
+import { isWithinDistance } from './utils.js';
 
 /**
  * Registers global keyboard input (E key for interaction)
@@ -57,8 +58,16 @@ export function tryInteractAt(x, y) {
   const entity = getEntityAt(x, y);
   if (!entity) return;
 
+  // Check interaction range
+  const { x: px, y: py } = playerState.position;
+  if (!isWithinDistance(px, py, x, y, 1)) {
+    console.log('Too far to interact.');
+    return;
+  }
+
   handleInteraction(entity);
 }
+
 
 /**
  * Handles interaction logic for any entity type

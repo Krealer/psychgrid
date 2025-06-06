@@ -53,3 +53,27 @@ export function posKey(x, y) {
 export function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+export function isUIBlocking() {
+  return (
+    !document.getElementById('dialogue-box')?.classList.contains('hidden') ||
+    !document.getElementById('chest-ui')?.classList.contains('hidden') ||
+    !document.getElementById('crafting-ui')?.classList.contains('hidden')
+  );
+}
+
+/**
+ * Checks if two positions are within N tiles distance (default 1)
+ * Uses Chebyshev distance (max of dx, dy), which covers diagonals too
+ * @param {number} x1
+ * @param {number} y1
+ * @param {number} x2
+ * @param {number} y2
+ * @param {number} maxDistance
+ * @returns {boolean}
+ */
+export function isWithinDistance(x1, y1, x2, y2, maxDistance = 1) {
+  const dx = Math.abs(x1 - x2);
+  const dy = Math.abs(y1 - y2);
+  return Math.max(dx, dy) <= maxDistance;
+}

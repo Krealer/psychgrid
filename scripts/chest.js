@@ -2,54 +2,86 @@
 // PsychGrid – chest.js
 // ===============================
 
-import { getItemById } from './inventory.js';
+import { getItemById } from './item_loader.js'; // ✅ CORRECT
+import { addItemToInventory } from './inventory.js';
 import { getConfig } from './config_loader.js';
-
-export const chestState = {
-  items: [] // Holds item IDs
-};
+import { chestState } from './chest_state.js'; // External chest logic if used
 
 /**
- * Initializes the chest system (can preload items here if needed)
+ * Initializes the chest system
  */
 export async function initChest() {
-  chestState.items = []; // or preload with some IDs
+  chestState.items = [];
   renderChestUI();
 }
 
 /**
- * Opens the chest UI
+ * Opens the chest UI and activates overlay
  */
 export function showChestUI() {
   const chestUI = document.getElementById('chest-ui');
-  if (!chestUI) return;
+  const overlay = document.getElementById('state-overlay');
+  if (!chestUI || !overlay) return;
 
   chestUI.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+
   renderChestUI();
 }
 
 /**
- * Renders the current contents of the chest
+ * Closes chest UI and deactivates overlay
  */
-function renderChestUI() {
+export function hideChestUI() {
+  const chestUI = document.getElementById('chest-ui');
+  const overlay = document.getElementById('state-overlay');
+  if (!chestUI || !overlay) return;
+
+  chestUI.classList.add('hidden');
+  overlay.classList.add('hidden');
+}
+
+/**
+ * Renders the chest contents to the UI
+ */
+export function renderChestUI() {
   const chestUI = document.getElementById('chest-ui');
   if (!chestUI) return;
 
   chestUI.innerHTML = `
     <h2>Chest</h2>
-    <ul id="chest-items"></ul>
+    <ul id="chest-items" class="chest-grid"></ul>
     <button id="close-chest">Close</button>
   `;
 
   const list = document.getElementById('chest-items');
-  chestState.items.forEach(itemId => {
+  chestState.items.forEach((itemId, index) => {
     const item = getItemById(itemId);
     const li = document.createElement('li');
-    li.textContent = item ? item.name : itemId;
+    li.classList.add('triangle-item');
+    li.title = item?.description || '';
+    li.textContent = ''; // show label separately
+
+    const label = document.createElement('span');
+    label.textContent = item?.name || itemId;
+    label.style.position = 'absolute';
+    label.style.bottom = '-1.2rem';
+    label.style.fontSize = '0.75rem';
+    label.style.color = '#ccc';
+
+    li.onclick = () => {
+      const success = addItemToInventory(itemId);
+      if (!success) {
+        alert('Inventory full or duplicate item not allowed.');
+        return;
+      }
+      chestState.items.splice(index, 1);
+      renderChestUI();
+    };
+
+    li.appendChild(label);
     list.appendChild(li);
   });
 
-  document.getElementById('close-chest').onclick = () => {
-    chestUI.classList.add('hidden');
-  };
+  document.getElementById('close-chest').onclick = hideChestUI;
 }

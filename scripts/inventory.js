@@ -3,36 +3,27 @@
 // ===============================
 
 import { playerState } from './state.js';
-import { loadItems } from './item_loader.js';
-import { getConfig } from './config_loader.js';
-
-let allItems = [];
+import { chestState } from './chest_state.js'; // ✅ Correct file
+import { renderChestUI } from './chest.js';
+import { getItemById } from './item_loader.js'; // ✅ Added missing import
 
 /**
- * Loads item metadata and initializes inventory display
+ * Initializes inventory UI on game load
  */
-export async function initInventory() {
-  allItems = await loadItems();
+export function initInventory() {
   renderInventory();
 }
 
 /**
- * Adds an item to the player's inventory
- * Respects config limits (max items, duplicates)
+ * Adds item to inventory if space and not duplicate
+ * @param {string} itemId
+ * @returns {boolean} success
  */
 export function addItemToInventory(itemId) {
-  const config = getConfig();
   const inv = playerState.inventory;
 
-  if (inv.length >= config.maxPlayerInventory) {
-    alert('Your inventory is full.');
-    return false;
-  }
-
-  if (!config.allowDuplicateItems && inv.includes(itemId)) {
-    alert('You already have this item.');
-    return false;
-  }
+  if (inv.includes(itemId)) return false;
+  if (inv.length >= 3) return false;
 
   inv.push(itemId);
   renderInventory();
@@ -40,38 +31,82 @@ export function addItemToInventory(itemId) {
 }
 
 /**
- * Removes specific items from inventory (by ID)
+ * Removes a single item by ID
+ * @param {string} itemId
+ * @returns {boolean} success
+ */
+export function removeItemFromInventory(itemId) {
+  const index = playerState.inventory.indexOf(itemId);
+  if (index === -1) return false;
+
+  playerState.inventory.splice(index, 1);
+  renderInventory();
+  return true;
+}
+
+/**
+ * Removes multiple items
  * @param {string[]} itemIds
+ * @returns {boolean} success
  */
 export function removeItemsFromInventory(itemIds) {
-  playerState.inventory = playerState.inventory.filter(
-    item => !itemIds.includes(item)
-  );
+  const clone = [...playerState.inventory];
+
+  for (const id of itemIds) {
+    const index = clone.indexOf(id);
+    if (index === -1) return false;
+    clone.splice(index, 1);
+  }
+
+  playerState.inventory = clone;
   renderInventory();
+  return true;
 }
 
 /**
- * Gets item metadata by ID
- * @param {string} id
- * @returns {Object|null}
+ * Checks if player has an item
+ * @param {string} itemId
  */
-export function getItemById(id) {
-  return allItems.find(item => item.id === id) || null;
+export function hasItem(itemId) {
+  return playerState.inventory.includes(itemId);
 }
 
 /**
- * Renders the inventory UI
+ * Renders inventory to #inventory-list
  */
 export function renderInventory() {
-  const list = document.getElementById('inventory-list');
-  if (!list) return;
+  const container = document.getElementById('inventory-list');
+  container.innerHTML = '';
 
-  list.innerHTML = '';
-
-  for (const itemId of playerState.inventory) {
+  playerState.inventory.forEach(itemId => {
     const item = getItemById(itemId);
     const li = document.createElement('li');
-    li.textContent = item ? item.name : itemId;
-    list.appendChild(li);
-  }
+    li.classList.add('triangle-item');
+    li.title = item?.description || '';
+    li.textContent = ''; // No inner text by default
+
+    // Add name label under triangle
+    const label = document.createElement('span');
+    label.textContent = item ? item.name : itemId;
+    label.style.position = 'absolute';
+    label.style.bottom = '-1.2rem';
+    label.style.fontSize = '0.75rem';
+    label.style.color = '#ccc';
+    label.style.whiteSpace = 'nowrap';
+
+    li.appendChild(label);
+
+    li.onclick = () => {
+      if (chestState.items.length >= 100) {
+        alert('Chest is full.');
+        return;
+      }
+
+      if (!removeItemFromInventory(itemId)) return;
+      chestState.items.push(itemId);
+      renderChestUI();
+    };
+
+    container.appendChild(li);
+  });
 }

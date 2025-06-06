@@ -1,12 +1,22 @@
 [
   {
-    "id": "make_key",
-    "output": "iron_key",
-    "ingredients": ["iron_ingot", "wood_handle"]
+    "input": ["iron_ingot", "key_mould"],
+    "output": "forged_key_shaft"
   },
   {
-    "id": "fail_blob",
-    "output": "useless_blob",
-    "ingredients": ["leaf", "mud"]
+    "input": ["clockwork_spring", "tiny_gear"],
+    "output": "mechanical_core"
+  },
+  {
+    "input": ["keyring_loop", "leather_strip"],
+    "output": "carrying_grip"
+  },
+  {
+    "input": ["forged_key_shaft", "carrying_grip"],
+    "output": "assembled_key_frame"
+  },
+  {
+    "input": ["assembled_key_frame", "mechanical_core"],
+    "output": "iron_key"
   }
 ]
