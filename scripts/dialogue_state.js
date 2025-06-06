@@ -45,10 +45,11 @@ function renderDialogueStep() {
 
   step.options.forEach((option) => {
     const btn = document.createElement('button');
-    btn.textContent = option.text;
+    btn.textContent = option.label || option.text || '...';
     btn.onclick = () => handleOption(option);
     optionsBox.appendChild(btn);
   });
+
 }
 
 /**
@@ -78,8 +79,8 @@ function handleOption(option) {
   }
 
   // Next step or end
-  if (typeof option.next === 'number') {
-    currentStep = option.next;
+  if (typeof option.goto === 'number') {
+    currentStep = option.goto;
     renderDialogueStep();
   } else {
     endDialogue();
