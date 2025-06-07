@@ -1,13 +1,13 @@
 // ===============================
-// PsychGrid – kael_dialogue.js (v0.4.0)
+// PsychGrid – kael_dialogue.js (v0.6.0)
 // ===============================
 
 export const kaelDialogue = [
   {
     text: "You sure you want to talk to me? I don't have patience for games.",
     options: [
-      { label: "Just asking for help.", goto: 1 },
-      { label: "I can handle you.", goto: 2 }
+      { label: "Just asking for help.", goto: 1, memoryFlag: "approached_calmly" },
+      { label: "I can handle you.", goto: 2, memoryFlag: "confronted" }
     ]
   },
 
@@ -35,7 +35,8 @@ export const kaelDialogue = [
         label: "Thanks. I won’t waste it.",
         goto: null,
         give: "notebook",
-        condition: (state) => !state.inventory.includes("notebook")
+        condition: (state) => !state.inventory.includes("notebook"),
+        memoryFlag: "gave_notebook"
       }
     ]
   },
@@ -44,20 +45,25 @@ export const kaelDialogue = [
   {
     text: "No. I *am* better. And you just lost your chance.",
     options: [
-      { label: "You’ll regret that.", goto: null }
+      { label: "You’ll regret that.", goto: null, memoryFlag: "rejected_by_kael" }
     ]
   },
 
-  // THREAT PATH
+  // THREAT PATH – player tries to steal
   {
     text: "Watch your words. I don’t hand out favors.",
     options: [
-      { label: "You're right. That was too far.", goto: null },
+      {
+        label: "You're right. That was too far.",
+        goto: null,
+        memoryFlag: "backed_down"
+      },
       {
         label: "Then I’ll take it by force.",
         goto: null,
         take: "notebook",
-        condition: (state) => state.inventory.includes("notebook")
+        condition: (state) => state.inventory.includes("notebook"),
+        memoryFlag: "threatened_kael"
       }
     ]
   }

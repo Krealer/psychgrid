@@ -1,13 +1,13 @@
 // ===============================
-// PsychGrid – mira_dialogue.js (v0.4.0)
+// PsychGrid – mira_dialogue.js (v0.6.0)
 // ===============================
 
 export const miraDialogue = [
   {
     text: "Oh… hi. I didn’t think anyone would talk to me.",
     options: [
-      { label: "Of course I would.", goto: 1 },
-      { label: "Are you okay?", goto: 2 }
+      { label: "Of course I would.", goto: 1, memoryFlag: "felt_seen" },
+      { label: "Are you okay?", goto: 2, memoryFlag: "checked_on_her" }
     ]
   },
 
@@ -22,19 +22,18 @@ export const miraDialogue = [
     text: "I… I think so? Maybe the chest has a way.",
     options: [
       { label: "The chest?", goto: 3 },
-      { label: "Never mind.", goto: null }
+      { label: "Never mind.", goto: null, memoryFlag: "dismissed_mira" }
     ]
   },
 
   {
     text: "Yes! But… I also heard something about iron and a stick. Maybe you can mix them?",
     options: [
-      { label: "That actually helps. Thank you.", goto: 4 },
-      { label: "That sounds made up.", goto: 5 }
+      { label: "That actually helps. Thank you.", goto: 4, memoryFlag: "encouraged_mira" },
+      { label: "That sounds made up.", goto: 5, memoryFlag: "doubted_mira" }
     ]
   },
 
-  // Gives iron_ingot if player doesn't already have it
   {
     text: "You’re welcome! Oh—take this, it might help.",
     options: [
@@ -42,7 +41,8 @@ export const miraDialogue = [
         label: "Thanks, Mira.",
         goto: null,
         give: "iron_ingot",
-        condition: (state) => !state.inventory.includes("iron_ingot")
+        condition: (state) => !state.inventory.includes("iron_ingot"),
+        memoryFlag: "gave_iron_ingot"
       }
     ]
   },
@@ -50,7 +50,7 @@ export const miraDialogue = [
   {
     text: "Oh… sorry… maybe I’m wrong.",
     options: [
-      { label: "It’s okay. You meant well.", goto: null }
+      { label: "It’s okay. You meant well.", goto: null, memoryFlag: "forgave_mira" }
     ]
   }
 ];

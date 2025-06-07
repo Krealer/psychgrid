@@ -8,7 +8,13 @@
 export const playerState = {
   position: { x: 10, y: 10 },
   inventory: [],
-  rewardsGiven: [], // ✅ Add this line
+  rewardsGiven: [],
+  npcMemory: {        // ✅ Corrected: Moved from "memory"
+    Kael: new Set(),
+    Selena: new Set(),
+    Mira: new Set(),
+    Viera: new Set()
+  },
   flags: {
     hasBeenTricked: 0,
     trust: {
@@ -24,7 +30,6 @@ export const playerState = {
   },
   log: []
 };
-
 
 /**
  * Shared chest state (100 item cap)
@@ -49,9 +54,14 @@ export const roomObjects = {
 export function initializeState(gridSize = 20) {
   playerState.position = { x: 10, y: 10 };
   playerState.inventory = [];
-  playerState.rewardsGiven = []; // ✅ Reset on new game
+  playerState.rewardsGiven = [];
   playerState.flags.hasBeenTricked = 0;
   playerState.log = [];
+
+  // ✅ Reset memory
+  for (const key in playerState.npcMemory) {
+    playerState.npcMemory[key] = new Set();
+  }
 
   chestState.items = [];
 }

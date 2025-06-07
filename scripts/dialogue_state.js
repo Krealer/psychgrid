@@ -10,6 +10,11 @@ import {
   renderInventory
 } from './inventory.js';
 
+import {
+  markNpcMemory,
+  checkNpcMemory
+} from './memory.js'; // ✅ NEW: Memory utilities
+
 let currentDialogue = null;
 let currentStep = null;
 let currentCharacter = null;
@@ -31,6 +36,9 @@ export function startDialogue(character, dialogueTree) {
   currentDialogue = dialogueTree;
   currentCharacter = character;
   currentStep = 0;
+
+  // ✅ Mark that the NPC has been met
+  markNpcMemory(character.name, 'met');
 
   showDialogueBox();
   renderDialogueStep();
@@ -56,7 +64,7 @@ function renderDialogueStep() {
     // Hide if this reward was already given
     if (option.give && hasReward(option.give)) return false;
 
-    // Hide if condition is false
+    // Memory-aware condition (e.g., condition: state => checkNpcMemory("Selena", "tradedNotebook"))
     if (typeof option.condition === 'function' && !option.condition(playerState)) return false;
 
     return true;
@@ -81,11 +89,14 @@ function renderDialogueStep() {
  * Handles the logic when a player chooses a dialogue option
  */
 function handleOption(option) {
+  const npc = currentCharacter.name;
+
   // Give item only if not already rewarded
   if (option.give && !hasReward(option.give)) {
     const success = addItemToInventory(option.give);
     if (success) {
       playerState.rewardsGiven.push(option.give);
+      markNpcMemory(npc, `gave:${option.give}`); // ✅ Track memory of item given
     } else {
       alert('Could not receive item.');
     }
@@ -94,15 +105,20 @@ function handleOption(option) {
   // Remove item
   if (option.take) {
     removeItemsFromInventory([option.take]);
+    markNpcMemory(npc, `took:${option.take}`); // ✅ Track if item was taken
   }
 
   // Trust/fear modifiers
-  const char = currentCharacter.name;
   if (option.trust !== undefined) {
-    playerState.flags.trust[char] = (playerState.flags.trust[char] || 0) + option.trust;
+    playerState.flags.trust[npc] = (playerState.flags.trust[npc] || 0) + option.trust;
   }
   if (option.fear !== undefined) {
-    playerState.flags.fear[char] = (playerState.flags.fear[char] || 0) + option.fear;
+    playerState.flags.fear[npc] = (playerState.flags.fear[npc] || 0) + option.fear;
+  }
+
+  // Optional custom memory tags
+  if (option.memoryFlag) {
+    markNpcMemory(npc, option.memoryFlag);
   }
 
   // Move to next

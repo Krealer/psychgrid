@@ -9,9 +9,12 @@ import { initInventory } from './inventory.js';
 import { initChest } from './chest.js';
 import { loadConfig } from './config_loader.js';
 import { loadRecipes } from './recipe_loader.js';
-import { loadItems } from './item_loader.js'; // ✅ Load item data
+import { loadItems } from './item_loader.js'; 
 import { registerInteractions } from './interaction.js';
 import { handleTileClick } from './movement.js';
+import { toggleMemoryDebugUI } from './memory_debug.js';
+
+const DEV_MODE = true;
 
 /**
  * Main game initializer
@@ -19,26 +22,29 @@ import { handleTileClick } from './movement.js';
 async function initGame() {
   console.log('Initializing PsychGrid...');
 
-  // Load data
   await loadConfig();
-  await loadItems();      // ✅ Ensure item data is available
+  await loadItems();
   await loadRecipes();
 
-  // Build grid
   createGrid(20, 20);
   bindGridTileClicks();
 
-  // Characters
   setupPlayer();
   renderPlayer();
   characters.forEach(c => c.spawn());
 
-  // Inventory & chest
   await initInventory();
   await initChest();
 
-  // Input handlers
   registerInteractions();
+
+  if (DEV_MODE) {
+    window.addEventListener('keydown', (e) => {
+      if (e.key.toLowerCase() === 'm') {
+        toggleMemoryDebugUI();
+      }
+    });
+  }
 }
 
 /**
