@@ -1,0 +1,12 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Handles -->
+  <path d="M14 40 C10 35, 10 28, 14 24 L16 26 C12 30, 12 35, 16 38 Z" fill="#cc3f3f"/>
+  <path d="M34 40 C38 35, 38 28, 34 24 L32 26 C36 30, 36 35, 32 38 Z" fill="#cc3f3f"/>
+
+  <!-- Pivot circle -->
+  <circle cx="24" cy="24" r="2.5" fill="#555"/>
+
+  <!-- Cutting blades -->
+  <path d="M16 26 L24 24 L16 16 Q13 19, 16 26 Z" fill="#aaa" stroke="#666" stroke-width="1"/>
+  <path d="M32 26 L24 24 L32 16 Q35 19, 32 26 Z" fill="#aaa" stroke="#666" stroke-width="1"/>
+</svg>

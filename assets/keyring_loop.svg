@@ -1,0 +1,13 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer ring -->
+  <circle cx="40" cy="40" r="25" fill="none" stroke="#bbb" stroke-width="4" />
+
+  <!-- Inner ring for thickness effect -->
+  <circle cx="40" cy="40" r="20" fill="none" stroke="#888" stroke-width="2" />
+
+  <!-- Loop opening detail -->
+  <path d="M 58 40 A 18 18 0 0 0 58 42" stroke="#555" stroke-width="2" fill="none" />
+
+  <!-- Shine highlight -->
+  <path d="M 30 25 A 15 15 0 0 1 35 20" stroke="#fff" stroke-width="1" fill="none" />
+</svg>

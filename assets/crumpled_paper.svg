@@ -1,0 +1,13 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base Paper Shape -->
+  <path d="M10 8 L36 8 Q38 10 36 12 L34 14 Q38 16 34 18 L32 20 Q36 22 32 24 L30 26 Q34 28 30 30 L28 32 Q30 34 26 36 L12 36 Q10 34 10 32 Z"
+        fill="#eee" stroke="#aaa" stroke-width="1"/>
+
+  <!-- Crumple lines -->
+  <path d="M16 12 L28 30 M14 18 L24 26 M18 10 L22 20" 
+        stroke="#ccc" stroke-width="0.8" stroke-linecap="round" stroke-dasharray="2 2"/>
+
+  <!-- Shadow for depth -->
+  <path d="M12 36 Q14 38 16 36 Q18 34 20 36 Q22 38 24 36" 
+        stroke="#ccc" stroke-width="0.5" fill="none"/>
+</svg>

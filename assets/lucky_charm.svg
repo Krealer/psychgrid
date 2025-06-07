@@ -1,0 +1,10 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cord loop -->
+  <path d="M24,4 C16,6 16,18 24,20 C32,18 32,6 24,4 Z" fill="none" stroke="#8b5" stroke-width="2"/>
+
+  <!-- Charm body -->
+  <circle cx="24" cy="28" r="8" fill="#d9b400" stroke="#aa9300" stroke-width="2"/>
+
+  <!-- Magical symbol -->
+  <path d="M24 22 L24 34 M20 28 L28 28" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+</svg>

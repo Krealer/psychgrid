@@ -1,32 +1,30 @@
 // ===============================
-// PsychGrid – mira.js
+// /characters/mira.js
 // ===============================
 
 import { playerState } from '../scripts/state.js';
+import { renderCharacter } from '../scripts/character_renderer.js';
 
 export const Mira = {
   name: "Mira",
   id: "mira",
-  colorClass: "mira", // CSS: .circle.mira = yellow
+  color: "#e2d45c", // 🟡 soft yellow
   position: { x: 4, y: 15 },
 
   /**
-   * Places Mira on the grid
+   * Places Mira on the grid using shared renderer
    */
   spawn() {
-    const tile = getTileAt(this.position.x, this.position.y);
-    if (!tile) return;
-
-    const npcElement = document.createElement('div');
-    npcElement.classList.add('circle', this.colorClass);
-    npcElement.dataset.character = this.name;
-
-    tile.appendChild(npcElement);
+    renderCharacter({
+      name: this.name,
+      x: this.position.x,
+      y: this.position.y,
+      color: this.color
+    });
   },
 
   /**
    * Interaction logic — Mira only gives items
-   * Gives iron_ingot if the player doesn't already have it
    */
   interact(playerInventory) {
     if (!playerInventory.includes('iron_ingot')) {
@@ -35,10 +33,3 @@ export const Mira = {
     return null;
   }
 };
-
-/**
- * Utility: gets a tile DOM element by x/y
- */
-function getTileAt(x, y) {
-  return document.querySelector(`.grid-tile[data-x="${x}"][data-y="${y}"]`);
-}

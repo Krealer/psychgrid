@@ -1,0 +1,15 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Spoon Bowl -->
+  <ellipse cx="16" cy="16" rx="6" ry="9" fill="#bbb" stroke="#888" stroke-width="1"/>
+
+  <!-- Spoon Handle (broken) -->
+  <path d="M20 20 L32 32 
+           M32 32 L30 30 
+           M32 32 L34 30 
+           M32 32 L33 35 
+           M32 32 L30 34" 
+        stroke="#888" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Jagged break marker -->
+  <path d="M32 32 L35 30 L36 33 L34 34 L32 32" fill="#aaa" stroke="#666" stroke-width="0.5"/>
+</svg>

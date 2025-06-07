@@ -1,0 +1,14 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer spiral -->
+  <path d="M40,40
+           m-25,0
+           a25,25 0 1,0 50,0
+           a20,20 0 1,1 -40,0
+           a15,15 0 1,0 30,0
+           a10,10 0 1,1 -20,0
+           a5,5   0 1,0 10,0" 
+        fill="none" 
+        stroke="#888" 
+        stroke-width="3"
+        stroke-linecap="round" />
+</svg>

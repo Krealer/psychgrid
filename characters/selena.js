@@ -1,8 +1,9 @@
 // ===============================
-// PsychGrid – selena.js
+// /characters/selena.js
 // ===============================
 
 import { playerState } from '../scripts/state.js';
+import { renderCharacter } from '../scripts/character_renderer.js';
 
 export const Selena = {
   name: "Selena",
@@ -14,14 +15,13 @@ export const Selena = {
    * Places Selena on the grid
    */
   spawn() {
-    const tile = getTileAt(this.position.x, this.position.y);
-    if (!tile) return;
-
-    const npcElement = document.createElement('div');
-    npcElement.classList.add('circle', this.colorClass);
-    npcElement.dataset.character = this.name;
-
-    tile.appendChild(npcElement);
+    renderCharacter({
+      name: this.name,
+      x: this.position.x,
+      y: this.position.y,
+      color: '#9c27b0', // 🟣 purple
+      extraClasses: [this.colorClass]
+    });
   },
 
   /**
@@ -38,10 +38,3 @@ export const Selena = {
     return null;
   }
 };
-
-/**
- * Utility: gets a tile DOM element by x/y
- */
-function getTileAt(x, y) {
-  return document.querySelector(`.grid-tile[data-x="${x}"][data-y="${y}"]`);
-}

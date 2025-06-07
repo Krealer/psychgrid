@@ -3,124 +3,144 @@
     "id": "iron_ingot",
     "name": "Iron Ingot",
     "description": "A bar of iron, solid and heavy.",
-    "tags": ["material"]
+    "tags": ["material"],
+    "icon": "./assets/iron_ingot.svg"
   },
   {
     "id": "key_mold",
     "name": "Key Mold",
     "description": "A mold for casting basic key shapes.",
-    "tags": ["material"]
+    "tags": ["material"],
+    "icon": "./assets/key_mold.svg"
   },
   {
     "id": "clockwork_spring",
     "name": "Clockwork Spring",
     "description": "A tightly wound spring used in mechanical devices.",
-    "tags": ["material"]
+    "tags": ["material"],
+    "icon": "./assets/clockwork_spring.svg"
   },
   {
     "id": "tiny_gear",
     "name": "Tiny Gear",
     "description": "A small cog, part of a mechanical system.",
-    "tags": ["material"]
+    "tags": ["material"],
+    "icon": "./assets/tiny_gear.svg"
   },
   {
     "id": "keyring_loop",
     "name": "Keyring Loop",
     "description": "A ring-shaped holder often used to carry keys.",
-    "tags": ["material"]
+    "tags": ["material"],
+    "icon": "./assets/keyring_loop.svg"
   },
   {
     "id": "leather_strip",
     "name": "Leather Strip",
     "description": "A small strip of worn leather, surprisingly strong.",
-    "tags": ["material"]
+    "tags": ["material"],
+    "icon": "./assets/leather__strip.svg"
   },
 
   {
     "id": "forged_key_shaft",
     "name": "Forged Key Shaft",
     "description": "A rough metallic key body, shaped from a molten ingot using a mould.",
-    "tags": ["material"]
+    "tags": ["material"],
+    "icon": "./assets/forged_key_shaft.svg"
   },
   {
     "id": "mechanical_core",
     "name": "Mechanical Core",
     "description": "An inner mechanism allowing the key to interact with complex or magical locks.",
-    "tags": ["material"]
+    "tags": ["material"],
+    "icon": "./assets/mechanical_core.svg"
   },
   {
     "id": "carrying_grip",
     "name": "Carrying Grip",
     "description": "A grip or holding mechanism allowing one to carry or identify the key easily.",
-    "tags": ["material"]
+    "tags": ["material"],
+    "icon": "./assets/carrying_grip.svg"
   },
   {
     "id": "assembled_key_frame",
     "name": "Assembled Key Frame",
     "description": "A nearly complete key, with body and grip, but lacking internal functionality.",
-    "tags": ["material"]
+    "tags": ["material"],
+    "icon": "./assets/assembled_key_frame.svg"
   },
 
   {
     "id": "iron_key",
     "name": "Functional Door Key",
     "description": "The final key—mechanically complete, usable on advanced or enchanted locks.",
-    "tags": ["item"]
+    "tags": ["item"],
+    "icon": "./assets/iron_key.svg"
   },
 
   {
     "id": "lucky_charm",
     "name": "Lucky Charm",
     "description": "A trinket that brings peace of mind to the emotional.",
-    "tags": ["item"]
+    "tags": ["item"],
+    "icon": "./assets/lucky_charm.svg"
   },
   {
     "id": "notebook",
     "name": "Small Notebook",
     "description": "Empty pages for thoughts or plans — could be useful to the logical.",
-    "tags": ["item"]
+    "tags": ["item"],
+    "icon": "./assets/notebook.svg"
   },
   {
     "id": "spare_glasses",
     "name": "Spare Glasses",
     "description": "An intellectual tool or a social vulnerability?",
-    "tags": ["item"]
+    "tags": ["item"],
+    "icon": "./assets/spare_glasses.svg"
   },
   {
     "id": "old_photo",
     "name": "Old Photograph",
     "description": "A memory from the past — valuable to someone sentimental.",
-    "tags": ["item"]
+    "tags": ["item"],
+    "icon": "./assets/old_photo.svg"
   },
   {
     "id": "wire_snip",
     "name": "Wire Snipper",
     "description": "Could cut through something... or just be a bluff.",
-    "tags": ["item"]
+    "tags": ["item"],
+    "icon": "./assets/wire_snip.svg"
   },
 
   {
     "id": "broken_spoon",
     "name": "Broken Spoon",
     "description": "Utterly useless. Why are you carrying this?",
-    "tags": ["junk"]
+    "tags": ["junk"],
+    "icon": "./assets/broken_spoon.svg"
   },
   {
     "id": "crumpled_paper",
     "name": "Crumpled Paper",
     "description": "Whatever was written here is long gone.",
-    "tags": ["junk"]
+    "tags": ["junk"],
+    "icon": "./assets/crumpled_paper.svg"
   },
   {
     "id": "muddy_rock",
     "name": "Muddy Rock",
     "description": "A rock. It has mud. That’s all.",
-    "tags": ["junk"]
+    "tags": ["junk"],
+    "icon": "./assets/muddy_rock.svg"
   },
   {
     "id": "empty_box",
     "name": "Empty Box",
     "description": "Nothing inside. Not even disappointment.",
-    "tags": ["junk"]
+    "tags": ["junk"],
+    "icon": "./assets/empty_box.svg"
   }
 ]

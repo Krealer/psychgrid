@@ -1,0 +1,14 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bottom of the box -->
+  <polygon points="16,32 32,44 48,32 32,20" fill="#d9a066" stroke="#b47b33" stroke-width="1.5"/>
+
+  <!-- Left side -->
+  <polygon points="16,32 16,16 32,4 32,20" fill="#e0ac69" stroke="#b47b33" stroke-width="1.5"/>
+
+  <!-- Right side -->
+  <polygon points="48,32 48,16 32,4 32,20" fill="#f1c185" stroke="#b47b33" stroke-width="1.5"/>
+
+  <!-- Box flaps (open) -->
+  <polygon points="16,16 32,28 32,20 16,8" fill="#eec07a" stroke="#b47b33" stroke-width="1.5"/>
+  <polygon points="48,16 32,28 32,20 48,8" fill="#f4d49a" stroke="#b47b33" stroke-width="1.5"/>
+</svg>

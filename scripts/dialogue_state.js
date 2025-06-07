@@ -96,7 +96,8 @@ function handleOption(option) {
     const success = addItemToInventory(option.give);
     if (success) {
       playerState.rewardsGiven.push(option.give);
-      markNpcMemory(npc, `gave:${option.give}`); // ✅ Track memory of item given
+      markNpcMemory(npc, `gave:${option.give}`);
+      renderInventory(); // ✅ Reflect UI update
     } else {
       alert('Could not receive item.');
     }
@@ -105,7 +106,8 @@ function handleOption(option) {
   // Remove item
   if (option.take) {
     removeItemsFromInventory([option.take]);
-    markNpcMemory(npc, `took:${option.take}`); // ✅ Track if item was taken
+    markNpcMemory(npc, `took:${option.take}`);
+    renderInventory(); // ✅ Reflect UI update
   }
 
   // Trust/fear modifiers
@@ -121,7 +123,7 @@ function handleOption(option) {
     markNpcMemory(npc, option.memoryFlag);
   }
 
-  // Move to next
+  // Move to next dialogue step or end
   if (typeof option.goto === 'number') {
     currentStep = option.goto;
     renderDialogueStep();
@@ -129,6 +131,7 @@ function handleOption(option) {
     endDialogue();
   }
 }
+
 
 /**
  * Closes the dialogue UI and resets state

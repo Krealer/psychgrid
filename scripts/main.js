@@ -13,6 +13,7 @@ import { loadItems } from './item_loader.js';
 import { registerInteractions } from './interaction.js';
 import { handleTileClick } from './movement.js';
 import { toggleMemoryDebugUI } from './memory_debug.js';
+import { renderUIBar } from './ui_bar.js';
 
 const DEV_MODE = true;
 
@@ -45,6 +46,7 @@ async function initGame() {
       }
     });
   }
+  renderUIBar();
 }
 
 /**

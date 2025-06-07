@@ -73,25 +73,52 @@ export function hasItem(itemId) {
 /**
  * Renders inventory to #inventory-list
  */
+/**
+ * Renders inventory to #inventory-list using SVG icons
+ */
 export function renderInventory() {
   const container = document.getElementById('inventory-list');
+  if (!container) return;
+
   container.innerHTML = '';
+
+  if (playerState.inventory.length === 0) {
+    const empty = document.createElement('li');
+    empty.textContent = 'Inventory is empty';
+    empty.style.color = '#666';
+    container.appendChild(empty);
+    return;
+  }
 
   playerState.inventory.forEach(itemId => {
     const item = getItemById(itemId);
+    if (!item) {
+      console.warn(`Missing metadata for item: ${itemId}`);
+      return;
+    }
+
     const li = document.createElement('li');
     li.classList.add('triangle-item');
-    li.title = item?.description || '';
-    li.textContent = ''; // No inner text
+    li.title = item.description || '';
 
+    // SVG Icon
+    const img = document.createElement('img');
+    img.src = item.icon || `./assets/${itemId}.svg`; // Fallback path
+    img.alt = item.name || itemId;
+    img.style.width = '32px';
+    img.style.height = '32px';
+    img.style.display = 'block';
+    img.style.margin = '0 auto';
+
+    // Label
     const label = document.createElement('span');
-    label.textContent = item ? item.name : itemId;
-    label.style.position = 'absolute';
-    label.style.bottom = '-1.2rem';
-    label.style.fontSize = '0.75rem';
+    label.textContent = item.name || itemId;
+    label.style.display = 'block';
+    label.style.textAlign = 'center';
+    label.style.fontSize = '0.7rem';
     label.style.color = '#ccc';
-    label.style.whiteSpace = 'nowrap';
 
+    li.appendChild(img);
     li.appendChild(label);
 
     li.onclick = () => {

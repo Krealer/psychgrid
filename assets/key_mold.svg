@@ -1,0 +1,8 @@
+<svg width="140" height="60" viewBox="0 0 140 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer mold body -->
+  <rect x="5" y="10" width="130" height="40" rx="6" ry="6" fill="#3c3c3c" stroke="#222" stroke-width="2"/>
+  
+  <!-- Key outline inside the mold -->
+  <path d="M40 30 h30 v-6 h10 v6 h10 v6 h-10 v6 h-10 v-6 h-30 z" fill="#7a7a7a" stroke="#555" stroke-width="1.5"/>
+  <circle cx="35" cy="30" r="5" fill="#7a7a7a" stroke="#555" stroke-width="1.5"/>
+</svg>

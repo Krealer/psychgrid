@@ -1,0 +1,13 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base rock shape -->
+  <path d="M10 28 Q12 18 22 12 Q32 10 38 18 Q40 26 30 34 Q20 40 12 36 Q10 34 10 28 Z"
+        fill="#6b4f3b" stroke="#3e2f23" stroke-width="1.5"/>
+
+  <!-- Mud splotches -->
+  <circle cx="24" cy="22" r="2" fill="#4a3425" opacity="0.8"/>
+  <circle cx="18" cy="28" r="1.5" fill="#4a3425" opacity="0.7"/>
+  <path d="M30 26 Q29 28 27 27 Q28 24 30 26 Z" fill="#4a3425" opacity="0.6"/>
+
+  <!-- Rough shading -->
+  <path d="M14 30 Q16 32 18 30" stroke="#5a3e2b" stroke-width="1" fill="none"/>
+</svg>

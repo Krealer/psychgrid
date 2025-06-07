@@ -1,0 +1,13 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer frame of the grip -->
+  <rect x="10" y="16" width="28" height="16" rx="4" ry="4" fill="#444" stroke="#222" stroke-width="2"/>
+
+  <!-- Grip segments -->
+  <rect x="13" y="18" width="4" height="12" rx="1" ry="1" fill="#777"/>
+  <rect x="19" y="18" width="4" height="12" rx="1" ry="1" fill="#777"/>
+  <rect x="25" y="18" width="4" height="12" rx="1" ry="1" fill="#777"/>
+  <rect x="31" y="18" width="4" height="12" rx="1" ry="1" fill="#777"/>
+
+  <!-- Top highlight -->
+  <path d="M10 16 Q24 6 38 16" fill="none" stroke="#888" stroke-width="1.5" opacity="0.2"/>
+</svg>

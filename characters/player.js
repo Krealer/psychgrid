@@ -1,8 +1,9 @@
 // ===============================
-// PsychGrid – player.js
+// /characters/player.js
 // ===============================
 
 import { playerState } from '../scripts/state.js';
+import { renderCharacter } from '../scripts/character_renderer.js';
 
 /**
  * Initial placement of the player
@@ -12,24 +13,18 @@ export function setupPlayer() {
 }
 
 /**
- * Renders the player at their current position on the grid
+ * Renders the player at their current position
  */
 export function renderPlayer() {
-  // Remove any existing player circles
+  // Remove existing player element
   const old = document.querySelector('.circle.player');
-  if (old && old.parentElement) old.parentElement.removeChild(old);
+  if (old && old.parentElement) old.remove();
 
-  const tile = getTileAt(playerState.position.x, playerState.position.y);
-  if (!tile) return;
-
-  const playerElement = document.createElement('div');
-  playerElement.classList.add('circle', 'player');
-  tile.appendChild(playerElement);
-}
-
-/**
- * Utility: gets a tile DOM element by x/y
- */
-function getTileAt(x, y) {
-  return document.querySelector(`.grid-tile[data-x="${x}"][data-y="${y}"]`);
+  renderCharacter({
+    name: 'Player',
+    x: playerState.position.x,
+    y: playerState.position.y,
+    color: '#00bcd4', // 🟦 cyan
+    extraClasses: ['player']
+  });
 }

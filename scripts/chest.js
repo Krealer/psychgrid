@@ -42,7 +42,7 @@ export function hideChestUI() {
 }
 
 /**
- * Renders the chest contents to the UI
+ * Renders the chest contents to the UI using item icons
  */
 export function renderChestUI() {
   const chestUI = document.getElementById('chest-ui');
@@ -60,14 +60,26 @@ export function renderChestUI() {
     const li = document.createElement('li');
     li.classList.add('triangle-item');
     li.title = item?.description || '';
-    li.textContent = ''; // show label separately
 
+    // SVG icon
+    const img = document.createElement('img');
+    img.src = item?.icon || `./assets/${itemId}.svg`;
+    img.alt = item?.name || itemId;
+    img.style.width = '32px';
+    img.style.height = '32px';
+    img.style.display = 'block';
+    img.style.margin = '0 auto';
+
+    // Label
     const label = document.createElement('span');
     label.textContent = item?.name || itemId;
-    label.style.position = 'absolute';
-    label.style.bottom = '-1.2rem';
-    label.style.fontSize = '0.75rem';
+    label.style.display = 'block';
+    label.style.textAlign = 'center';
+    label.style.fontSize = '0.7rem';
     label.style.color = '#ccc';
+
+    li.appendChild(img);
+    li.appendChild(label);
 
     li.onclick = () => {
       const success = addItemToInventory(itemId);
@@ -79,9 +91,9 @@ export function renderChestUI() {
       renderChestUI();
     };
 
-    li.appendChild(label);
     list.appendChild(li);
   });
 
   document.getElementById('close-chest').onclick = hideChestUI;
 }
+

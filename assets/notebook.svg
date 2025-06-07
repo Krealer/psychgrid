@@ -1,0 +1,16 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Notebook cover -->
+  <rect x="10" y="8" width="28" height="32" rx="2" ry="2" fill="#3a3a3a" stroke="#2a2a2a" stroke-width="2"/>
+
+  <!-- Page layer (behind) -->
+  <rect x="12" y="10" width="24" height="28" rx="1" ry="1" fill="#f4f4f4"/>
+
+  <!-- Spiral binding -->
+  <line x1="14" y1="12" x2="14" y2="36" stroke="#888" stroke-width="1"/>
+  <circle cx="14" cy="14" r="1" fill="#888"/>
+  <circle cx="14" cy="18" r="1" fill="#888"/>
+  <circle cx="14" cy="22" r="1" fill="#888"/>
+  <circle cx="14" cy="26" r="1" fill="#888"/>
+  <circle cx="14" cy="30" r="1" fill="#888"/>
+  <circle cx="14" cy="34" r="1" fill="#888"/>
+</svg>
