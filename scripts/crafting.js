@@ -103,31 +103,42 @@ function renderCraftingSlots() {
   }
 
   // Show clickable inventory items
-  const invContainer = document.getElementById('crafting-inventory');
-  invContainer.innerHTML = '<h4>Your Items</h4><ul></ul>';
-  const ul = document.createElement('ul');
-  ul.style.display = 'flex';
-  ul.style.gap = '10px';
-  ul.style.flexWrap = 'wrap';
+// Show clickable inventory items
+const invContainer = document.getElementById('crafting-inventory');
+invContainer.innerHTML = '<h4>Your Items</h4>';
+const ul = document.createElement('ul');
+ul.style.display = 'flex';
+ul.style.gap = '10px';
+ul.style.flexWrap = 'wrap';
 
-  playerState.inventory.forEach(itemId => {
-    const item = getItemById(itemId);
-    const li = document.createElement('li');
-    li.textContent = item.name;
-    li.title = item.description;
-    li.style.background = '#333';
-    li.style.padding = '5px 10px';
-    li.style.borderRadius = '4px';
-    li.style.cursor = 'pointer';
+playerState.inventory.forEach(itemId => {
+  const item = getItemById(itemId);
 
-    li.onclick = () => {
-      const added = addCraftInput(itemId);
-      if (added) renderCraftingSlots();
-    };
+  if (!item) {
+    console.warn(`Missing item metadata for ID: ${itemId}`);
+    return;
+  }
 
-    ul.appendChild(li);
-  });
+  const li = document.createElement('li');
+  li.textContent = item.name;
+  li.title = item.description;
+  li.style.background = '#333';
+  li.style.padding = '5px 10px';
+  li.style.borderRadius = '4px';
+  li.style.cursor = 'pointer';
 
-  invContainer.querySelector('ul')?.remove();
-  invContainer.appendChild(ul);
+  li.onclick = () => {
+    const added = addCraftInput(itemId);
+    if (added) {
+      console.log(`Added "${itemId}" to crafting input.`);
+      renderCraftingSlots();
+    } else {
+      console.warn(`Could not add "${itemId}" to crafting input.`);
+    }
+  };
+
+  ul.appendChild(li);
+});
+
+invContainer.appendChild(ul);
 }

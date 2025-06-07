@@ -1,6 +1,6 @@
 [
   {
-    "input": ["iron_ingot", "key_mould"],
+    "input": ["iron_ingot", "key_mold"],
     "output": "forged_key_shaft"
   },
   {

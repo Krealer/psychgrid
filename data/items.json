@@ -6,9 +6,9 @@
     "tags": ["material"]
   },
   {
-    "id": "key_mould",
-    "name": "Key Mould",
-    "description": "A mould for casting basic key shapes.",
+    "id": "key_mold",
+    "name": "Key Mold",
+    "description": "A mold for casting basic key shapes.",
     "tags": ["material"]
   },
   {

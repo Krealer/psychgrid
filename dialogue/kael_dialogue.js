@@ -27,15 +27,15 @@ export const kaelDialogue = [
     ]
   },
 
-  // SUCCESSFUL BRANCH – grants iron_ingot
+  // SUCCESSFUL BRANCH – grants notebook
   {
     text: "Hmph. Fine. Take this before I change my mind.",
     options: [
       {
         label: "Thanks. I won’t waste it.",
         goto: null,
-        give: "iron_ingot",
-        condition: (state) => !state.inventory.includes("iron_ingot")
+        give: "notebook",
+        condition: (state) => !state.inventory.includes("notebook")
       }
     ]
   },
@@ -56,8 +56,8 @@ export const kaelDialogue = [
       {
         label: "Then I’ll take it by force.",
         goto: null,
-        take: "iron_ingot",
-        condition: (state) => state.inventory.includes("iron_ingot")
+        take: "notebook",
+        condition: (state) => state.inventory.includes("notebook")
       }
     ]
   }

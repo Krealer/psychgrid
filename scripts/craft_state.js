@@ -55,15 +55,17 @@ export function getCraftResult() {
  * Internal: updates the result based on inputs
  */
 function updateCraftingResult() {
-  const inputSet = new Set(craftState.inputs);
+  const inputs = [...craftState.inputs].sort();
   craftState.result = null;
 
+  console.log('Crafting inputs:', inputs);
+  console.log('Available recipes:', getRecipes());
+
   for (const recipe of getRecipes()) {
-    if (recipe.input.length !== inputSet.size) continue;
+    const recipeInputs = [...recipe.input].sort();
+    if (inputs.length !== recipeInputs.length) continue;
 
-    const recipeSet = new Set(recipe.input);
-    const match = recipe.input.every(id => inputSet.has(id));
-
+    const match = inputs.every((id, i) => id === recipeInputs[i]);
     if (match) {
       craftState.result = recipe.output;
       return;
