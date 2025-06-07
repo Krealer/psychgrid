@@ -39,7 +39,7 @@
     "name": "Leather Strip",
     "description": "A small strip of worn leather, surprisingly strong.",
     "tags": ["material"],
-    "icon": "./assets/leather__strip.svg"
+    "icon": "./assets/leather_strip.svg"
   },
 
   {
