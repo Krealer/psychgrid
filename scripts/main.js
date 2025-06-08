@@ -14,6 +14,7 @@ import { registerInteractions } from './interaction.js';
 import { handleTileClick } from './movement.js';
 import { toggleMemoryDebugUI } from './memory_debug.js';
 import { renderUIBar } from './ui_bar.js';
+import { checkCharacterInteractions } from './dev_interactions.js';
 
 const DEV_MODE = true;
 
@@ -43,6 +44,9 @@ async function initGame() {
     window.addEventListener('keydown', (e) => {
       if (e.key.toLowerCase() === 'm') {
         toggleMemoryDebugUI();
+      }
+      if (e.key.toLowerCase() === 'c') {
+      checkCharacterInteractions(); // 👈 new
       }
     });
   }
